@@ -17,13 +17,17 @@ class navigationBarState extends State<navigationBar> {
       
         
           backgroundColor: Color.fromARGB(248, 206, 195, 195),
+          
            type: BottomNavigationBarType.fixed,
             elevation: 0,
       //backgroundColor: Colors.blue,
       currentIndex: currentIndex,
       onTap: (index) => setState(() => currentIndex = index),
+      iconSize: 30,
+      
+      
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
+        BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home",),
         BottomNavigationBarItem(
             icon: Icon(Icons.sports_gymnastics), label: "Workout"),
         BottomNavigationBarItem(
@@ -33,6 +37,10 @@ class navigationBarState extends State<navigationBar> {
             
             
       ],
+      
+      
+      
+      
     );
   }
 }

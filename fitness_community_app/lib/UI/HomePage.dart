@@ -1,9 +1,16 @@
 import 'dart:ui';
 
+import 'package:fitness_community_app/UI/BMI.dart';
+import 'package:fitness_community_app/widget/dietPlan.dart';
+import 'package:fitness_community_app/widget/popularExercise.dart';
+import 'package:fitness_community_app/widget/todayActivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fitness_community_app/widget/navigation_bar.dart';
+import 'package:fitness_community_app/widget/showCaseBanner.dart';
+import 'package:fitness_community_app/widget/dietPlan.dart';
 import 'package:fitness_community_app/UI/WorkoutScreen.dart';
 import 'package:fitness_community_app/Data/Activity_data.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,18 +21,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return app_bar();
-  }
-}
-
-class app_bar extends StatefulWidget {
-  @override
-  State<app_bar> createState() => _app_bar();
-}
-
-class _app_bar extends State<app_bar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,30 +42,46 @@ class _app_bar extends State<app_bar> {
                 Text(
                   "Hello",
                   style: TextStyle(
-                      color: Colors.black.withOpacity(0.6), fontSize: 15),
+                      color: Colors.white.withOpacity(0.8),
+                      fontSize: 15,
+                      letterSpacing: 1.2),
                 ),
                 Text(
-                  "Rahul",
-                  style: TextStyle(color: Colors.black, fontSize: 15),
+                  "Shyam",
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 15, letterSpacing: 1.2),
                 ),
               ],
             ),
           ],
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.pink,
         actions: <Widget>[
           Row(
             // mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Image.asset(
-                "Assets/Icons/messenger.png",
-                height: 30,
-                width: 30,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return BMI();
+                  }));
+                },
+                child: FaIcon(
+                  FontAwesomeIcons.calculator,
+                  color: Colors.white,
+                  size: 25,
+                ),
               ),
               Padding(padding: EdgeInsets.all(6)),
               FaIcon(
-                FontAwesomeIcons.bell,
-                color: Colors.black,
+                FontAwesomeIcons.facebookMessenger,
+                color: Colors.white,
+                size: 25,
+              ),
+              Padding(padding: EdgeInsets.all(6)),
+              FaIcon(
+                FontAwesomeIcons.solidBell,
+                color: Colors.white,
                 size: 25,
               ),
               Padding(padding: EdgeInsets.all(6)),
@@ -78,250 +89,41 @@ class _app_bar extends State<app_bar> {
           ),
         ],
       ),
-      body: home_content(),
-      bottomNavigationBar: navigationBar(),
-    );
-  }
-}
-
-class home_content extends StatefulWidget {
-  @override
-  State<home_content> createState() => _home_content_state();
-}
-
-class _home_content_state extends State<home_content> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Container(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          stops: [
+            0.1,
+            0.4,
+            0.6,
+            0.9,
+          ],
+          colors: [
+            Colors.pink,
+            Color.fromARGB(234, 223, 76, 8),
+            Color.fromARGB(224, 219, 147, 13),
+            Colors.pink,
+          ],
+        )),
+        child: SafeArea(
+            child: Container(
+          margin: EdgeInsets.only(left: 13, right: 13, top: 12),
+          child: ListView(
+            children: <Widget>[
+              SliderScreen(),
               Padding(
-                padding: EdgeInsets.only(top: 15, bottom: 25),
-                child: Container(
-                  height: 180,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(20)),
-                ),
+                padding: EdgeInsets.only(top: 10),
               ),
-              Row(
-                  
-                children: [
-                  Text(
-                    "Today's Activity",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.8),
-                  ),
-                  Expanded(child: SizedBox()),
-                  Padding(
-                    padding: EdgeInsets.all(20),
-                  ),
-                  SelectableText(
-                    "Details",
-                    style: TextStyle(
-                        color: Colors.deepPurple,
-                        fontSize: 18,
-                        letterSpacing: 0.5),
-                    onTap: () {
-                      WorkoutScreen();
-                    },
-                  ),
-                  Icon(
-                    Icons.arrow_forward_sharp,
-                    color: Colors.deepPurple,
-                  )
-                ],
-              ),
-              Container(
-                height: 150,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.only(top: 10, right: 20, bottom: 15),
-                  children: [
-                    Stack(
-                      children: [
-                        buildCardActivity(),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Image.asset(
-                                "Assets/Icons/heartbeat.png",
-                                height: 65,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "Heart Rate",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.red),
-                            ),
-                          ],
-                        ),
-
-                        //
-                      ],
-                    ),
-                    SizedBox(width: 12),
-                    Stack(
-                      children: [
-                        buildCardActivity(),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 15, top: 10),
-                              child: Image.asset(
-                                "Assets/Icons/sleep.png",
-                                height: 40,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 7,
-                            ),
-                            Text(
-                              "Sleep",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 55, 39, 201)),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(width: 12),
-                    Stack(
-                      children: [
-                        buildCardActivity(),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 15, top: 10),
-                              child: Image.asset(
-                                "Assets/Icons/calories.png",
-                                height: 40,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 7,
-                            ),
-                            Text(
-                              "Calories",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 240, 136, 17)),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(width: 12),
-                    buildCardActivity(),
-                  ],
-                ),
-              ),
-              Row(
-                children: const [
-                  Text(
-                    "Popular Exercise",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.8),
-                  ),
-                  Expanded(child: SizedBox()),
-                  Padding(
-                    padding: EdgeInsets.all(20),
-                  ),
-                  Text(
-                    "Details",
-                    style: TextStyle(
-                        color: Colors.deepPurple,
-                        fontSize: 18,
-                        letterSpacing: 0.5),
-                  ),
-                  Icon(
-                    Icons.arrow_forward_sharp,
-                    color: Colors.deepPurple,
-                  )
-                ],
-              ),
-              Container(
-                height: 250,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.only(top: 10, right: 20, bottom: 15),
-                  children: [
-                    Stack(
-                      children: [
-                        buildCardExercise(),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 50, left: 30),
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(18),
-                          child: Image.asset(
-                            "Assets/Icons/chest.jpg",
-                            height: 250.0,
-                            width: 200.0,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
-
-                      //
-                    ),
-                    SizedBox(width: 12),
-                    buildCardExercise(),
-                    SizedBox(width: 12),
-                    buildCardExercise(),
-                    SizedBox(width: 12),
-                    buildCardExercise(),
-                  ],
-                ),
-              ),
-            ]),
+              todayActivity(),
+              popularExercise(),
+              dietPlan(),
+            ],
           ),
-        ),
+        )),
       ),
+      // bottomNavigationBar: navigationBar(),
     );
   }
 }
-
-Widget buildCardActivity() => Container(
-      height: 200,
-      width: 190,
-      decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(0.4),
-        borderRadius: BorderRadius.circular(20),
-        //boxShadow: BoxShadow(color: Clors.black),
-      ),
-    );
-
-Widget buildCardExercise() => Container(
-      height: 250,
-      width: 200,
-      decoration: BoxDecoration(
-        color: Colors.purple,
-
-        borderRadius: BorderRadius.circular(20),
-        //boxShadow: BoxShadow(color: Clors.black),
-      ),
-
-      // child: Image.asset(
-      //   "Assets/Icons/chest.jpg",
-      //   fit: BoxFit.cover,
-      // ),
-    );
