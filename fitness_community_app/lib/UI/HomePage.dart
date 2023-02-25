@@ -8,7 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:fitness_community_app/widget/navigation_bar.dart';
 import 'package:fitness_community_app/widget/showCaseBanner.dart';
 import 'package:fitness_community_app/widget/dietPlan.dart';
-import 'package:fitness_community_app/UI/WorkoutScreen.dart';
+
 import 'package:fitness_community_app/Data/Activity_data.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 

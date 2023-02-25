@@ -1,8 +1,9 @@
 import 'package:fitness_community_app/UI/HomePage.dart';
-import 'package:fitness_community_app/UI/WorkoutScreen.dart';
+
 import 'package:fitness_community_app/UI/statistics.dart';
 import 'package:fitness_community_app/UI/BMI.dart';
 import 'package:fitness_community_app/UI/workout_beginner.dart';
+import 'package:fitness_community_app/UI/workout_description.dart';
 import 'package:fitness_community_app/widget/navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class _homeState extends State<home> {
   final List<Widget> _pages = [
     HomePage(),
     workout_beginner(),
-    BMI(),
+    workout_description(0),
     UserStatistics(),
   ];
 
@@ -56,6 +57,8 @@ class _homeState extends State<home> {
       body: _pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color.fromARGB(255, 216, 23, 87),
+        fixedColor: Colors.white,
+       
 
         type: BottomNavigationBarType.fixed,
         elevation: 0,
@@ -66,14 +69,30 @@ class _homeState extends State<home> {
 
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
-            label: "Home",
+              icon: Icon(
+                Icons.home_filled,
+                color: Colors.black,
+              ),
+              label: "Home"),
+          BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.personRunning,
+                color: Colors.black,
+              ),
+              label: "Workout"),
+          BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.pager,
+                color: Colors.black,
+              ),
+              label: "Feed"),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.bar_chart,
+              color: Colors.black,
+            ),
+            label: "Statistics",
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.sports_gymnastics), label: "Workout"),
-          BottomNavigationBarItem(icon: Icon(Icons.pages), label: "Feed"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.bar_chart), label: "Statistics"),
         ],
       ),
     );

@@ -1,3 +1,6 @@
+import 'package:fitness_community_app/UI/BMI.dart';
+import 'package:fitness_community_app/UI/HomePage.dart';
+import 'package:fitness_community_app/UI/workout_description.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,16 +22,19 @@ final List<Workout> workout = [
   Workout(
     name: 'Back',
   ),
-   Workout(
+  Workout(
     name: 'Shoulder',
   ),
-   Workout(
+  Workout(
     name: 'Abs',
   ),
-   Workout(
+  Workout(
     name: 'Leg',
   ),
-   Workout(
+  Workout(
+    name: 'Triceps',
+  ),
+  Workout(
     name: 'Triceps',
   ),
 ];
@@ -77,19 +83,27 @@ class _workout_beginner_State extends State<workout_beginner> {
                     mainAxisSpacing: 4.0),
                 itemBuilder: (BuildContext context, int index) {
                   Workout workout1 = workout[index];
-                  
-                  return Container(
-                    height: 10,
-                    width: 20,
-                    
-                    
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
 
-                    child: Center(child: Text(workout1.name,style: TextStyle(fontSize: 24,color: Colors.white),)),
-
+                  return InkWell(
+                    child: Container(
+                      height: 10,
+                      width: 20,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.4),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                          child: Text(
+                        workout1.name,
+                        style: TextStyle(fontSize: 24, color: Colors.white),
+                      )),
+                    ),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return workout_description(index);
+                      }));
+                    },
                   );
                 },
               ),
