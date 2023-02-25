@@ -101,7 +101,7 @@ class _workout_beginner_State extends State<workout_beginner> {
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return workout_description(index);
+                        return workout_description();
                       }));
                     },
                   );

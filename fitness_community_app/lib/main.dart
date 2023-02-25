@@ -47,7 +47,7 @@ class _homeState extends State<home> {
   final List<Widget> _pages = [
     HomePage(),
     workout_beginner(),
-    workout_description(0),
+    workout_description(),
     UserStatistics(),
   ];
 

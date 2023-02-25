@@ -1,32 +1,13 @@
-
-
 final List<String> all_workout_list = [
-  
-   'Chest',
-
- 
-   'Bisceps',
-  
-    
-    'Back',
- 
-     'Shoulder',
-  
-    
-    'Abs',
-  
-    
+  'Chest',
+  'Bisceps',
+  'Back',
   'Shoulder',
- 
-    
-   'Leg',
-  
-    
-     'Triceps',
-  
+  'Abs',
+  'Shoulder',
+  'Leg',
+  'Triceps',
 ];
-
-
 
 class Chest {
   String imageUrl;

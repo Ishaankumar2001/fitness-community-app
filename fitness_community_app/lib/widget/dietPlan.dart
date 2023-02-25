@@ -2,17 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-
-
 class Diet {
   String imageUrl;
   String name;
-  
 
   Diet({
     required this.imageUrl,
     required this.name,
-   
   });
 }
 
@@ -20,19 +16,16 @@ final List<Diet> diet = [
   Diet(
     imageUrl: 'Assets/Icons/chest.jpg',
     name: 'Chest',
-    
   ),
   Diet(
     imageUrl: 'Assets/Icons/shoulder.jpg',
     name: 'Bisceps',
-    
   ),
   Diet(
-      imageUrl: 'Assets/Icons/shoulder.jpg',
-      name: 'Back',
+    imageUrl: 'Assets/Icons/shoulder.jpg',
+    name: 'Back',
   ),
 ];
-
 
 class dietPlan extends StatefulWidget {
   const dietPlan({super.key});
@@ -75,6 +68,10 @@ class _dietPlanState extends State<dietPlan> {
           Container(
             height: 200,
             width: 200,
+            child: Image.asset(
+              "Assets/Icons/diet.jpg",
+              fit: BoxFit.fill,
+            ),
             padding: EdgeInsets.only(
               top: 8,
             ),

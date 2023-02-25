@@ -16,13 +16,10 @@ final List<String> all_workout_list = [
 ];
 
 class workout_description extends StatelessWidget {
-  final int index;
-  workout_description(this.index);
-
+  
   @override
   Widget build(BuildContext context) {
-    final String data = all_workout_list[index];
-   final String fun = data.toLowerCase();
+   
     return SafeArea(
       
       child: Scaffold(
@@ -70,7 +67,7 @@ class workout_description extends StatelessWidget {
                   child: ListView.separated(
                     primary: false,
                     scrollDirection: Axis.vertical,
-                    itemCount: data.length,
+                    itemCount: chest.length,
                     itemBuilder: (BuildContext context, index) {
                       Chest data1= chest[index];
 
